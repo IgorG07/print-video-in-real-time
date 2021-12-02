@@ -1,0 +1,41 @@
+"""
+import cv2
+import numpy as np
+
+img = cv2.imread("pexels-c-technical-6636083 (2).mp4")
+img = cv2.flip(img, 1)
+
+a = [1, 2, 3, 4, 5]
+print(a[:2])
+
+def rotate (img_param, angle):
+    height, width = img.shape[:2]
+    point = (width//2, height//2)
+
+    mat = cv2.getRotationMatrix2D(point, angle, 1)
+    return cv2.warpAffine(img, mat, (width, height))
+"""
+
+
+import cv2
+cap = cv2.VideoCapture(0)
+
+x, y = 0, 0
+
+while True:
+    success, img = cap.read()
+    img = cv2.GaussianBlur(img, (5, 5), 0)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    img = cv2.Canny(img, 110, 110)
+    X=X+1
+    Y=Y+1
+    cv2.rectangle(img, (150, 300), (550, 100), (255, 255, 255), thickness=2)
+
+
+
+    cv2.imshow('Resut', img)
+
+    if cv2.waitKey(1) & 0xFF == ord("q"):
+        break
+
+#не дописана
